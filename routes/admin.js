@@ -13,7 +13,6 @@ router.get('/add-product', (req, res, next) => {
 
 // /admin/add-product => POST
 router.post('/add-product', function(req, res, next) {
-  console.log(req.body);
   res.redirect('/');
 });
 

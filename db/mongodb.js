@@ -7,7 +7,7 @@ mongoose.set("strictQuery", false);
 
 //db connect
 mongoose.connect(
-	`mongodb+srv://KamilMaerS:${process.env.DB_API_KEY}@cluster0.nxgromj.mongodb.net/?retryWrites=true&w=majority`,
+	`mongodb+srv://KamilMaerS:${process.env.DB_API_KEY}@cluster0.nxgromj.mongodb.net/star-wars`,
 	{
 		useNewUrlParser: true,
 		useUnifiedTopology: true,

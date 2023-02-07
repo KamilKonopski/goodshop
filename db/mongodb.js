@@ -6,10 +6,7 @@ dotenv.config();
 mongoose.set("strictQuery", false);
 
 //db connect
-mongoose.connect(
-	`mongodb+srv://KamilMaerS:${process.env.DB_API_KEY}@cluster0.nxgromj.mongodb.net/star-wars`,
-	{
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	}
-);
+mongoose.connect(process.env.DB_API_KEY, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});

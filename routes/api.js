@@ -16,6 +16,9 @@ router.get("/films", filmsActions.getAllFilms);
 router.get("/films/:id", filmsActions.getSingleFilm);
 
 //fetch charakters
-router.get("/charakters", charaktersActions.getCharakters);
+router.get("/charakters", charaktersActions.getAllCharakters);
+
+//fech single charakter
+router.get("/charakters/:id", charaktersActions.getSingleCharakter);
 
 module.exports = router;

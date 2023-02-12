@@ -1,6 +1,6 @@
-const express = require("express");
-const apiRouter = require("./routes/api");
-const cors = require("cors");
+import express from "express";
+import apiRouter from "./routes/api";
+import cors from "cors";
 
 const app = express();
 const port = 8888;

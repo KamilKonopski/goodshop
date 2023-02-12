@@ -1,6 +1,6 @@
-const express = require("express");
-const filmsActions = require("../actions/films");
-const charaktersActions = require("../actions/charakters");
+import express from "express";
+import filmsActions from "../actions/films";
+import charaktersActions from "../actions/charakters";
 
 const router = express.Router();
 
@@ -21,4 +21,4 @@ router.get("/charakters", charaktersActions.getAllCharakters);
 //fech single charakter
 router.get("/charakters/:id", charaktersActions.getSingleCharakter);
 
-module.exports = router;
+export default router;

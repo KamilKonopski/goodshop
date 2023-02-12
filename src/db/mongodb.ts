@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+import mongoose, { ConnectOptions } from "mongoose";
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -9,4 +9,4 @@ mongoose.set("strictQuery", false);
 mongoose.connect(process.env.DB_API_KEY, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
-});
+} as ConnectOptions);

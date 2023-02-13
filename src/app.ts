@@ -8,7 +8,7 @@ const port = 8888;
 app.use(cors());
 
 //db
-require("./db/mongodb");
+import "./db/mongodb";
 
 //routes
 app.use("/", apiRouter);

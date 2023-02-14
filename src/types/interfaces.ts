@@ -6,6 +6,7 @@ export interface Film {
 	producer: string;
 	release_date: string;
 	image_url: string;
+	comments: { name: string; body: string }[];
 }
 
 export interface Charakter {

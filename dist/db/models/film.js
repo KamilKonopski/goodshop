@@ -9,6 +9,7 @@ const FilmSchema = new mongoose_1.Schema({
     producer: { type: String },
     release_date: { type: String },
     image_url: { type: String },
+    comments: { type: Array },
 });
 const Film = (0, mongoose_1.model)("Film", FilmSchema);
 exports.default = Film;

@@ -9,6 +9,7 @@ const FilmSchema: Schema = new Schema({
 	producer: { type: String },
 	release_date: { type: String },
 	image_url: { type: String },
+	comments: { type: Array },
 });
 
 const Film = model<Film>("Film", FilmSchema);

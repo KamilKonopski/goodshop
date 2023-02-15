@@ -9,6 +9,7 @@ const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 const port = 8888;
 app.use((0, cors_1.default)());
+app.use(express_1.default.json());
 //db
 require("./db/mongodb");
 //routes

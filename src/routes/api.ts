@@ -15,6 +15,9 @@ router.get("/films", filmsActions.getAllFilms);
 //fetch single film
 router.get("/films/:id", filmsActions.getSingleFilm);
 
+//add new comment to single film
+router.put("/films/:id", filmsActions.addNewComment);
+
 //fetch charakters
 router.get("/charakters", charaktersActions.getAllCharakters);
 

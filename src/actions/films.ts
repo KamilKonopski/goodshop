@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import { Request, Response } from "express";
 
 import Film from "../db/models/film";
 
@@ -15,5 +15,17 @@ export default {
 		Film.findOne({ _id: id }, (err: Error, doc: Document) => {
 			res.status(200).json(doc);
 		});
+	},
+
+	async addNewComment(req: Request, res: Response) {
+		const id = req.params.id;
+		const name = req.body.name;
+		const body = req.body.body;
+
+		const film = await Film.findOne({ _id: id });
+		film!.comments.push({ name: name, body: body });
+		await film!.save();
+
+		res.status(201).json(film);
 	},
 };

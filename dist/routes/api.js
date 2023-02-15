@@ -15,6 +15,8 @@ router.get("/", (req, res) => {
 router.get("/films", films_1.default.getAllFilms);
 //fetch single film
 router.get("/films/:id", films_1.default.getSingleFilm);
+//add new comment to single film
+router.put("/films/:id", films_1.default.addNewComment);
 //fetch charakters
 router.get("/charakters", charakters_1.default.getAllCharakters);
 //fech single charakter

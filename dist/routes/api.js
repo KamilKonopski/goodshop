@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const films_1 = __importDefault(require("../actions/films"));
 const charakters_1 = __importDefault(require("../actions/charakters"));
+const shop_1 = __importDefault(require("../actions/shop"));
 const router = express_1.default.Router();
 // general route
 router.get("/", (req, res) => {
@@ -19,6 +20,10 @@ router.get("/films/:id", films_1.default.getSingleFilm);
 router.put("/films/:id", films_1.default.addNewComment);
 //fetch charakters
 router.get("/charakters", charakters_1.default.getAllCharakters);
-//fech single charakter
+//fetch single charakter
 router.get("/charakters/:id", charakters_1.default.getSingleCharakter);
+//fetch all shop items
+router.get("/shop", shop_1.default.getAllShopItems);
+//fetch single shop item
+router.get("/shop/:id", shop_1.default.getSingleShopItem);
 exports.default = router;

@@ -1,6 +1,7 @@
 import express from "express";
 import filmsActions from "../actions/films";
 import charaktersActions from "../actions/charakters";
+import shopActions from "../actions/shop";
 
 const router = express.Router();
 
@@ -21,7 +22,13 @@ router.put("/films/:id", filmsActions.addNewComment);
 //fetch charakters
 router.get("/charakters", charaktersActions.getAllCharakters);
 
-//fech single charakter
+//fetch single charakter
 router.get("/charakters/:id", charaktersActions.getSingleCharakter);
+
+//fetch all shop items
+router.get("/shop", shopActions.getAllShopItems);
+
+//fetch single shop item
+router.get("/shop/:id", shopActions.getSingleShopItem);
 
 export default router;

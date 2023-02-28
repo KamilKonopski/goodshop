@@ -20,3 +20,12 @@ export interface Charakter {
 	gender: string;
 	image_url: string;
 }
+
+export interface Shop {
+	name: string;
+	price: number;
+	image_url: string;
+	quantity: number;
+	description: string;
+	type: string;
+}

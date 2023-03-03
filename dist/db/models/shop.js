@@ -9,5 +9,5 @@ const ShopSchema = new mongoose_1.Schema({
     description: { type: String },
     type: { type: String },
 });
-const Shop = (0, mongoose_1.model)("Shop", ShopSchema);
+const Shop = (0, mongoose_1.model)("Shop", ShopSchema, "shop");
 exports.default = Shop;

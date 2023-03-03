@@ -10,6 +10,6 @@ const ShopSchema: Schema = new Schema({
 	type: { type: String },
 });
 
-const Shop = model<Shop>("Shop", ShopSchema);
+const Shop = model<Shop>("Shop", ShopSchema, "shop");
 
 export default Shop;

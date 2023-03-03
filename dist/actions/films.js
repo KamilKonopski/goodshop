@@ -20,6 +20,22 @@ exports.default = {
         const id = req.params.id;
         const name = req.body.name;
         const body = req.body.body;
+        let errors = {
+            name: "",
+            comment: "",
+        };
+        if (name == "") {
+            errors.name = "Invalid name!";
+        }
+        if (body == "") {
+            errors.comment = "Invalid comment!";
+        }
+        if (Object.keys(errors).length > 0) {
+            return res.status(422).json({
+                message: "Adding the comment failed due to validation errors.",
+                errors,
+            });
+        }
         const film = await film_1.default.findOne({ _id: id });
         film.comments.push({ name: name, body: body });
         await film.save();

@@ -20,16 +20,14 @@ exports.default = {
         const id = req.params.id;
         const name = req.body.name;
         const body = req.body.body;
-        let errors = {
-            name: "",
-            comment: "",
-        };
-        if (name == "") {
+        let errors = {};
+        if (name === "") {
             errors.name = "Invalid name!";
         }
-        if (body == "") {
+        if (body === "") {
             errors.comment = "Invalid comment!";
         }
+        console.log(errors);
         if (Object.keys(errors).length > 0) {
             return res.status(422).json({
                 message: "Adding the comment failed due to validation errors.",

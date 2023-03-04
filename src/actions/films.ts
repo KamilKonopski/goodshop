@@ -22,18 +22,16 @@ export default {
 		const name = req.body.name;
 		const body = req.body.body;
 
-		let errors: { name: string; comment: string } = {
-			name: "",
-			comment: "",
-		};
+		let errors: { name?: string; comment?: string } = {};
 
-		if (name == "") {
+		if (name === "") {
 			errors.name = "Invalid name!";
 		}
 
-		if (body == "") {
+		if (body === "") {
 			errors.comment = "Invalid comment!";
 		}
+		console.log(errors);
 
 		if (Object.keys(errors).length > 0) {
 			return res.status(422).json({

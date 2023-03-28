@@ -1,0 +1,11 @@
+@import "styles/normalize.scss";
+@import "styles/root.scss";
+@import "styles/fonts.scss";
+
+html {
+	overflow-x: hidden;
+}
+
+body {
+	font-family: "Roboto", sans-serif;
+}

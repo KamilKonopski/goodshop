@@ -1,35 +1,41 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+import { IUser } from "src/interfaces/user";
+
 interface IAuthState {
 	token: string | null;
-	userName: string;
+	fullName: string | null;
+	image: string | null;
 }
 
 const authInitialState: IAuthState = {
 	token: null || localStorage.getItem("token"),
-	userName: "guest" || localStorage.getItem("userName"),
+	fullName: null || localStorage.getItem("fullname"),
+	image: null || localStorage.getItem("image"),
 };
 
 const authSlice = createSlice({
 	name: "auth",
 	initialState: authInitialState,
 	reducers: {
-		loginHandler(
-			state: IAuthState,
-			{ payload }: PayloadAction<{ token: string; userName: string | null }>
-		) {
+		loginHandler(state: IAuthState, { payload }: PayloadAction<IUser>) {
 			state.token = payload.token;
 			localStorage.setItem("token", payload.token);
-			if (payload.userName) {
-				state.userName = payload.userName;
-				localStorage.setItem("userName", payload.userName);
-			}
+			state.fullName = `${payload.firstName} ${payload.lastName}`;
+			localStorage.setItem(
+				"fullname",
+				`${payload.firstName} ${payload.lastName}`
+			);
+			state.image = payload.image;
+			localStorage.setItem("image", payload.image);
 		},
 		logoutHandler(state: IAuthState) {
 			state.token = null;
 			localStorage.removeItem("token");
-			state.userName = "guest";
-			localStorage.removeItem("userName");
+			state.fullName = null;
+			localStorage.removeItem("fullname");
+			state.image = null;
+			localStorage.removeItem("image");
 		},
 	},
 });

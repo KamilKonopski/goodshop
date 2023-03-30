@@ -7,6 +7,10 @@
 	padding: 20px;
 	justify-content: center;
 
+	& a {
+		text-decoration: none;
+	}
+
 	&__found {
 		flex-basis: 100%;
 		text-transform: uppercase;
@@ -24,6 +28,10 @@
 		flex-wrap: wrap;
 		justify-content: space-around;
 		cursor: pointer;
+
+		&:hover .product__title {
+			text-decoration: underline;
+		}
 
 		&__image-container {
 			width: 100%;

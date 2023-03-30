@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import RootLayout from "./components/Layout/RootLayout";
 import HomePage from "./pages/HomePage";
-import ProductCategoryPage from "./pages/ProductCategoryPage";
+import ProductsCategoryPage from "./pages/ProductsCategoryPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
-import RegisterPage from "./pages/RegisterPage";
-import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
+import CartPage from "./pages/CartPage";
 
 import store from "./store";
 
@@ -18,10 +18,13 @@ const App: React.FC = () => {
 				<Routes>
 					<Route path="/" element={<RootLayout />}>
 						<Route index={true} element={<HomePage />} />
-						<Route path="sign-up" element={<SignupPage />} />
-						<Route path="register" element={<RegisterPage />} />
-						<Route path="category/:id" element={<ProductCategoryPage />} />
+						<Route path="login" element={<LoginPage />} />
+						<Route
+							path="category/:category"
+							element={<ProductsCategoryPage />}
+						/>
 						<Route path="product/:id" element={<ProductDetailsPage />} />
+						<Route path="cart" element={<CartPage />} />
 					</Route>
 				</Routes>
 			</Router>

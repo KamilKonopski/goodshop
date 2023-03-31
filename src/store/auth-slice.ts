@@ -3,15 +3,20 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "src/interfaces/user";
 
 interface IAuthState {
-	token: string | null;
-	fullName: string | null;
-	image: string | null;
+	user: IUser | null;
 }
 
+const getUserFromLocalStorage = () => {
+	const userFromStorage = localStorage.getItem("user");
+	if (userFromStorage) {
+		const user = JSON.parse(userFromStorage) as IUser;
+		return user;
+	}
+	return null;
+};
+
 const authInitialState: IAuthState = {
-	token: null || localStorage.getItem("token"),
-	fullName: null || localStorage.getItem("fullname"),
-	image: null || localStorage.getItem("image"),
+	user: getUserFromLocalStorage(),
 };
 
 const authSlice = createSlice({
@@ -19,23 +24,12 @@ const authSlice = createSlice({
 	initialState: authInitialState,
 	reducers: {
 		loginHandler(state: IAuthState, { payload }: PayloadAction<IUser>) {
-			state.token = payload.token;
-			localStorage.setItem("token", payload.token);
-			state.fullName = `${payload.firstName} ${payload.lastName}`;
-			localStorage.setItem(
-				"fullname",
-				`${payload.firstName} ${payload.lastName}`
-			);
-			state.image = payload.image;
-			localStorage.setItem("image", payload.image);
+			state.user = payload;
+			localStorage.setItem("user", JSON.stringify(payload));
 		},
 		logoutHandler(state: IAuthState) {
-			state.token = null;
-			localStorage.removeItem("token");
-			state.fullName = null;
-			localStorage.removeItem("fullname");
-			state.image = null;
-			localStorage.removeItem("image");
+			state.user = null;
+			localStorage.removeItem("user");
 		},
 	},
 });

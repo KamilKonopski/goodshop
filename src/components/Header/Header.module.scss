@@ -1,0 +1,23 @@
+.header {
+	display: flex;
+	align-items: center;
+
+	&__logo {
+		width: 290px;
+		text-align: center;
+
+		& a {
+			color: var(--color-content);
+			text-decoration: none;
+			transition: color 0.2s linear;
+
+			&:hover {
+				color: var(--color-text-lighten);
+			}
+		}
+	}
+
+	& .cart__number {
+		color: var(--color-price);
+	}
+}

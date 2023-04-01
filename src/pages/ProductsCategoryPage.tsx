@@ -6,9 +6,13 @@ import Products from "../components/Products/Products";
 import { IProducts } from "src/interfaces/products";
 import ContentFilters from "../components/ContentFilters/ContentFilters";
 
+import useDocumentTitle from "../hooks/useDocumentTitle";
+
 const ProductCategoryPage: React.FC = () => {
 	const [products, setProducts] = useState<IProducts[] | []>([]);
 	const { category } = useParams();
+
+	useDocumentTitle(`- ${category}`);
 
 	useEffect(() => {
 		const fetchData = async () => {

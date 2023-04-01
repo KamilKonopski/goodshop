@@ -11,14 +11,7 @@ import classes from "./Auth.module.scss";
 
 const Auth: React.FC = () => {
 	const [showProfile, setShowProfile] = useState<boolean>(false);
-	const userFirstName = useSelector(
-		(state: RootState) => state.auth.user?.firstName
-	);
-	const userLastName = useSelector(
-		(state: RootState) => state.auth.user?.lastName
-	);
-
-	const userImage = useSelector((state: RootState) => state.auth.user?.image);
+	const user = useSelector((state: RootState) => state.auth.user);
 	const dispatch = useDispatch();
 
 	const handleLogout = () => {
@@ -29,7 +22,7 @@ const Auth: React.FC = () => {
 	return (
 		<>
 			<div className={classes.auth}>
-				{!userFirstName ? (
+				{!user?.firstName ? (
 					<span
 						onClick={() => setShowProfile((prev) => !prev)}
 						className={classes["auth__name"]}
@@ -57,13 +50,13 @@ const Auth: React.FC = () => {
 						onClick={() => setShowProfile((prev) => !prev)}
 					>
 						<span className={classes["auth__name"]}>
-							{userFirstName} {userLastName}
+							{user.firstName} {user.lastName}
 						</span>
-						{userImage && (
+						{user.image && (
 							<div className={classes["auth__image-container"]}>
 								<img
 									className={classes["auth__image"]}
-									src={userImage}
+									src={user.image}
 									alt=""
 								/>
 							</div>
@@ -90,7 +83,7 @@ const Auth: React.FC = () => {
 
 				{showProfile && (
 					<div className={classes["auth__profile"]}>
-						{!userFirstName ? (
+						{!user?.firstName ? (
 							<div className={classes["auth__buttons"]}>
 								<Link
 									onClick={() => setShowProfile((prev) => !prev)}

@@ -5,11 +5,15 @@ import Products from "../components/Products/Products";
 
 import { IProducts } from "src/interfaces/products";
 
+import useDocumentTitle from "../hooks/useDocumentTitle";
+
 const HomePage: React.FC = () => {
 	const [products, setProducts] = useState<IProducts[] | []>([]);
 	const [hasMore, setHasMore] = useState<boolean>(true);
 	const [page, setPage] = useState<number>(0);
 	const elementRef = useRef<HTMLDivElement>(null);
+
+	useDocumentTitle("");
 
 	const onIntersection = (entries: IntersectionObserverEntry[]) => {
 		const firstEntry = entries[0];

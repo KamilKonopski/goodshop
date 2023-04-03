@@ -25,7 +25,7 @@ const Auth: React.FC = () => {
 				{!user?.firstName ? (
 					<span
 						onClick={() => setShowProfile((prev) => !prev)}
-						className={classes["auth__name"]}
+						className={classes["auth__guest"]}
 					>
 						Hello, guest{" "}
 						<RiArrowDropDownLine
@@ -49,9 +49,6 @@ const Auth: React.FC = () => {
 						className={classes.auth}
 						onClick={() => setShowProfile((prev) => !prev)}
 					>
-						<span className={classes["auth__name"]}>
-							{user.firstName} {user.lastName}
-						</span>
 						{user.image && (
 							<div className={classes["auth__image-container"]}>
 								<img
@@ -83,6 +80,11 @@ const Auth: React.FC = () => {
 
 				{showProfile && (
 					<div className={classes["auth__profile"]}>
+						{user?.username && (
+							<span className={classes["auth__name"]}>
+								Hello, {user.username}
+							</span>
+						)}
 						{!user?.firstName ? (
 							<div className={classes["auth__buttons"]}>
 								<Link

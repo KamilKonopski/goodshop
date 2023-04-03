@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProductDetailts from "../components/Products/ProductDetailts";
+import ProductDetailts from "../components/Products/ProductDetails";
 
 import { IProducts } from "src/interfaces/products";
 

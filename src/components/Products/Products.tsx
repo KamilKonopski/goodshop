@@ -1,6 +1,8 @@
 import React, { forwardRef } from "react";
 import { Link } from "react-router-dom";
 
+import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
+
 import { IProducts } from "src/interfaces/products";
 
 import classes from "./Products.module.scss";
@@ -35,7 +37,11 @@ const Products = forwardRef<HTMLDivElement, IProps>((props, ref) => (
 				</div>
 			</Link>
 		))}
-		{props.hasMore && <div ref={ref}>Loading more products...</div>}
+		{props.hasMore && (
+			<div ref={ref}>
+				<LoadingSpinner />
+			</div>
+		)}
 	</section>
 ));
 

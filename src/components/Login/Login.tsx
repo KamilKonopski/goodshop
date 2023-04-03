@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import classes from "./Login.module.scss";
 
@@ -12,6 +13,7 @@ const Login = ({
 		password: "",
 	});
 	const [error, setError] = useState<string>("");
+	const navigate = useNavigate();
 
 	const handleChangeValues = (event: ChangeEvent<HTMLInputElement>) => {
 		setValues({ ...values, [event.target.name]: event.target.value });
@@ -30,6 +32,12 @@ const Login = ({
 		}
 
 		onLogin(values.username, values.password);
+
+		setValues({
+			username: "",
+			password: "",
+		});
+		navigate("/");
 	};
 
 	return (

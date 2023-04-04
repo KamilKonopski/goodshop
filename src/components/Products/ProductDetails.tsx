@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { AiOutlineLeft, AiOutlineRight, AiFillHeart } from "react-icons/ai";
 
@@ -7,12 +8,16 @@ import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 import { IProducts } from "src/interfaces/products";
 
+import { uiActions } from "src/store/ui-slice";
+
 import classes from "./ProductDetails.module.scss";
 
 const ProductDetails = ({ product }: { product: IProducts }) => {
 	const [mainImage, setMainImage] = useState<number>(0);
 	const [quantity, setQuantity] = useState<number>(1);
 	const [addToFavourite, setAddToFavourite] = useState<boolean>(false);
+
+	const dispatch = useDispatch();
 
 	useDocumentTitle(` - ${product.title}`);
 
@@ -29,6 +34,16 @@ const ProductDetails = ({ product }: { product: IProducts }) => {
 			setMainImage(0);
 		} else {
 			setMainImage((prev) => prev + 1);
+		}
+	};
+
+	const handleAddToFavourite = () => {
+		setAddToFavourite((prev) => !prev);
+
+		if (addToFavourite) {
+			dispatch(uiActions.addToFavourite(product));
+		} else {
+			dispatch(uiActions.removeFromFavourite(product.id));
 		}
 	};
 
@@ -110,7 +125,7 @@ const ProductDetails = ({ product }: { product: IProducts }) => {
 						size={25}
 						style={{ transition: "color 0.2s linear" }}
 						color={addToFavourite ? "#f00" : "#fff"}
-						onClick={() => setAddToFavourite((prev) => !prev)}
+						onClick={handleAddToFavourite}
 					/>
 					<span className={classes["details__favourite-text"]}>
 						Add to favourite

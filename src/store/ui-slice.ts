@@ -3,7 +3,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProducts } from "src/interfaces/products";
 
 interface IUIState {
-	favouriteProducts: IProducts[] | null;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	favouriteProducts: IProducts[] | any[];
 }
 
 const getFavouriteProductsFromLocalStorage = () => {
@@ -15,7 +16,7 @@ const getFavouriteProductsFromLocalStorage = () => {
 		) as IProducts[];
 		return favouriteProducts;
 	}
-	return null;
+	return [];
 };
 
 const uiInitialState: IUIState = {
@@ -27,20 +28,25 @@ const uiSlice = createSlice({
 	initialState: uiInitialState,
 	reducers: {
 		addToFavourite(state: IUIState, { payload }: PayloadAction<IProducts>) {
-			state.favouriteProducts?.push(payload);
-			localStorage.setItem(
-				"favourite-products",
-				JSON.stringify(state.favouriteProducts)
-			);
+			if (payload) {
+				state.favouriteProducts.push(payload);
+				localStorage.setItem(
+					"favourite-products",
+					JSON.stringify(state.favouriteProducts)
+				);
+			}
 		},
 		removeFromFavourite(state: IUIState, { payload }: PayloadAction<number>) {
-			state.favouriteProducts =
-				state.favouriteProducts?.filter((fav) => fav.id !== payload) ?? null;
-			localStorage.setItem(
-				"favourite-products",
-				JSON.stringify(state.favouriteProducts)
-			);
-			if (state.favouriteProducts?.length === 0) {
+			if (state.favouriteProducts.length) {
+				state.favouriteProducts = state.favouriteProducts.filter(
+					(fav) => fav.id !== payload
+				);
+				localStorage.setItem(
+					"favourite-products",
+					JSON.stringify(state.favouriteProducts)
+				);
+			}
+			if (state.favouriteProducts.length === 0) {
 				localStorage.removeItem("favourite-products");
 			}
 		},

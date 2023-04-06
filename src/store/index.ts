@@ -2,10 +2,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
 import authSlice from "./auth-slice";
+import uiSlice from "./ui-slice";
 
 export const createStore = () =>
 	configureStore({
-		reducer: { auth: authSlice.reducer },
+		reducer: { auth: authSlice.reducer, ui: uiSlice.reducer },
 	});
 
 const store = createStore();

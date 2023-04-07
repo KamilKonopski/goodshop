@@ -13,6 +13,7 @@ import ProductsCategoryPage from "./pages/ProductsCategoryPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import LoginPage from "./pages/LoginPage";
 import CartPage from "./pages/CartPage";
+import DashboardPage from "./pages/DashboardPage";
 
 import store from "./store";
 import { RootState } from "./store";
@@ -36,6 +37,7 @@ const App: React.FC = () => {
 						/>
 						<Route path="product/:id" element={<ProductDetailsPage />} />
 						<Route path="cart" element={<CartPage />} />
+						<Route path="dashboard" element={<DashboardPage />} />
 					</Route>
 				</Routes>
 			</Router>

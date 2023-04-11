@@ -8,9 +8,11 @@ import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 import { IProducts } from "src/interfaces/products";
 
-import { uiActions } from "src/store/ui-slice";
+import { uiActions } from "../../store/ui-slice";
+import { cartActions } from "../../store/cart-slice";
 
 import classes from "./ProductDetails.module.scss";
+import Quantity from "../UI/Quantity/Quantity";
 
 const ProductDetails = ({ product }: { product: IProducts }) => {
 	const [mainImage, setMainImage] = useState<number>(0);
@@ -42,9 +44,13 @@ const ProductDetails = ({ product }: { product: IProducts }) => {
 
 		if (addToFavourite) {
 			dispatch(uiActions.addToFavourite(product));
-		} else {
+		} else if (!addToFavourite) {
 			dispatch(uiActions.removeFromFavourite(product.id));
 		}
+	};
+
+	const handleAddToCart = () => {
+		dispatch(cartActions.addItemtoCart({ product, quantity }));
 	};
 
 	return (
@@ -95,25 +101,11 @@ const ProductDetails = ({ product }: { product: IProducts }) => {
 					</span>
 				</div>
 				<div className={classes["details__price"]}>
-					<div className={classes["details__quantity"]}>
-						<button
-							className={classes["details__btn-quantity"]}
-							disabled={quantity <= 1}
-							onClick={() => setQuantity((prev) => prev - 1)}
-						>
-							-
-						</button>
-						<span className={classes["details__quantity-text"]}>
-							{quantity}
-						</span>
-						<button
-							className={classes["details__btn-quantity"]}
-							disabled={quantity >= product.stock}
-							onClick={() => setQuantity((prev) => prev + 1)}
-						>
-							+
-						</button>
-					</div>
+					<Quantity
+						quantity={quantity}
+						stock={product.stock}
+						onQuantity={setQuantity}
+					/>
 					<span className={classes["details__price-text"]}>
 						${product.price}
 					</span>
@@ -132,7 +124,12 @@ const ProductDetails = ({ product }: { product: IProducts }) => {
 					</span>
 				</div>
 				<div className={classes["details__add"]}>
-					<button className={classes["details__add-btn"]}>Add to cart</button>
+					<button
+						className={classes["details__add-btn"]}
+						onClick={handleAddToCart}
+					>
+						Add to cart
+					</button>
 				</div>
 			</div>
 			<div className={classes["details__desc"]}>

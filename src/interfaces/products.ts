@@ -10,4 +10,6 @@ export interface IProducts {
 	stock: number;
 	thumbnail: string;
 	images: string[];
+	quantity: number;
+	totalPrice: number;
 }

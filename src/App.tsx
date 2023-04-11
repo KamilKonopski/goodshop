@@ -14,6 +14,7 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import LoginPage from "./pages/LoginPage";
 import CartPage from "./pages/CartPage";
 import DashboardPage from "./pages/DashboardPage";
+import ErrorPage from "./pages/ErrorPage";
 
 import { RootState } from "./store";
 
@@ -34,6 +35,7 @@ const App: React.FC = () => {
 					<Route path="cart" element={<CartPage />} />
 					<Route path="dashboard" element={<DashboardPage />} />
 				</Route>
+				<Route path="*" element={<ErrorPage />} />
 			</Routes>
 		</Router>
 	);

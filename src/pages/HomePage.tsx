@@ -6,10 +6,12 @@ import Products from "../components/Products/Products";
 import { IProducts } from "src/interfaces/products";
 
 import useDocumentTitle from "../hooks/useDocumentTitle";
+import LoadingSpinner from "../components/UI/LoadingSpinner/LoadingSpinner";
 
 const HomePage: React.FC = () => {
 	const [products, setProducts] = useState<IProducts[] | []>([]);
 	const [hasMore, setHasMore] = useState<boolean>(true);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [page, setPage] = useState<number>(0);
 	const elementRef = useRef<HTMLDivElement>(null);
 
@@ -23,6 +25,7 @@ const HomePage: React.FC = () => {
 	};
 
 	const fetchMoreProducts = async () => {
+		setIsLoading(true);
 		const response = await fetch(
 			`https://dummyjson.com/products?limit=16&skip=${page * 16}`
 		);
@@ -34,6 +37,7 @@ const HomePage: React.FC = () => {
 			setProducts((prev) => [...prev, ...products]);
 			setPage((prev) => prev + 1);
 		}
+		setIsLoading(false);
 	};
 
 	useEffect(() => {
@@ -52,7 +56,10 @@ const HomePage: React.FC = () => {
 	return (
 		<main className="main">
 			<ContentFilters />
-			<Products products={products} hasMore={hasMore} ref={elementRef} />
+			{isLoading && <LoadingSpinner />}
+			{!isLoading && (
+				<Products products={products} hasMore={hasMore} ref={elementRef} />
+			)}
 		</main>
 	);
 };

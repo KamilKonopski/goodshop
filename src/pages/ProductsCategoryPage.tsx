@@ -7,15 +7,18 @@ import { IProducts } from "src/interfaces/products";
 import ContentFilters from "../components/ContentFilters/ContentFilters";
 
 import useDocumentTitle from "../hooks/useDocumentTitle";
+import LoadingSpinner from "../components/UI/LoadingSpinner/LoadingSpinner";
 
 const ProductCategoryPage: React.FC = () => {
 	const [products, setProducts] = useState<IProducts[] | []>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const { category } = useParams();
 
 	useDocumentTitle(`- ${category}`);
 
 	useEffect(() => {
 		const fetchData = async () => {
+			setIsLoading(true);
 			const response = await fetch(
 				`https://dummyjson.com/products/category/${category}`
 			);
@@ -24,6 +27,8 @@ const ProductCategoryPage: React.FC = () => {
 				setProducts(products);
 			} catch (err) {
 				//
+			} finally {
+				setIsLoading(false);
 			}
 		};
 
@@ -33,7 +38,8 @@ const ProductCategoryPage: React.FC = () => {
 	return (
 		<main className="main">
 			<ContentFilters />
-			<Products products={products} />
+			{isLoading && <LoadingSpinner />}
+			{!isLoading && <Products products={products} />}
 		</main>
 	);
 };

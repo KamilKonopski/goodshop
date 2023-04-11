@@ -3,8 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProducts } from "src/interfaces/products";
 
 interface IUIState {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	favouriteProducts: IProducts[] | any[];
+	favouriteProducts: IProducts[];
 }
 
 const getFavouriteProductsFromLocalStorage = () => {
@@ -16,7 +15,7 @@ const getFavouriteProductsFromLocalStorage = () => {
 		) as IProducts[];
 		return favouriteProducts;
 	}
-	return [];
+	return [] as IProducts[];
 };
 
 const uiInitialState: IUIState = {

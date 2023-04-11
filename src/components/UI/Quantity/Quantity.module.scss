@@ -1,0 +1,31 @@
+.quantity {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+
+	&__text {
+		color: var(--color-content);
+	}
+	&__btn {
+		background-color: transparent;
+		border: 2px solid var(--color-secondary);
+		border-radius: 100%;
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: border-color 0.2s linear;
+		color: var(--color-text-main);
+
+		&:disabled {
+			border-color: var(--color-text-darken);
+			cursor: default;
+		}
+
+		&:hover:enabled {
+			border-color: lighten($color: #119ddb, $amount: 20%);
+		}
+	}
+}

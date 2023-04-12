@@ -3,41 +3,55 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IProducts } from "src/interfaces/products";
 
 interface ICart {
-	products: IProducts[] | [];
+	products: IProducts[];
 	totalQuantity: number;
 }
 
-const cartInitialState: ICart = { products: [], totalQuantity: 0 };
+const cartInitialState: ICart = {
+	products: [] as IProducts[],
+	totalQuantity: 0,
+};
 
 const cartSlice = createSlice({
 	name: "cart",
 	initialState: cartInitialState,
 	reducers: {
-		addItemtoCart(state, { payload }: PayloadAction<IProducts>) {
-			const newItem = payload;
-			const existingItem = state.products.find(
-				(product) => product.id === newItem.id
-			);
+		addItemtoCart(
+			state: ICart,
+			{ payload }: PayloadAction<{ product: IProducts; quantity: number }>
+		) {
+			const newItem = payload.product;
+			const quantity = payload.quantity;
+			const existingItem: IProducts | null =
+				state.products.find((product) => product.id === newItem.id) ?? null;
 			state.totalQuantity++;
 
-			// if (!existingItem) {
-			// 	state.products.push();
-			// } else {
-			// 	existingItem.quantity++;
-			// 	existingItem.totalPrice = existingItem.totalPrice + newItem.price;
-			// }
+			if (!existingItem) {
+				newItem.quantity = quantity;
+				newItem.totalPrice = newItem.price * quantity;
+				state.products.push(newItem);
+			} else {
+				existingItem.quantity = quantity;
+				existingItem.totalPrice = newItem.price * quantity;
+			}
 		},
-		removeItemFromCart(state, { payload }: PayloadAction<number>) {
+		removeItemFromCart(state: ICart, { payload }: PayloadAction<number>) {
 			const id = payload;
-			const existingItem = state.products.find((product) => product.id === id);
+			const existingItem: IProducts | null =
+				state.products.find((product) => product.id === id) ?? null;
 			state.totalQuantity--;
 
-			// if (existingItem.quantity === 1) {
-			// 	state.products = state.products.filter((product) => product.id !== id);
-			// } else {
-			// 	existingItem.quantity--;
-			// 	existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
-			// }
+			if (existingItem) {
+				if (existingItem.quantity === 1) {
+					state.products = state.products.filter(
+						(product) => product.id !== id
+					);
+				} else {
+					existingItem.quantity--;
+					existingItem.totalPrice =
+						existingItem.totalPrice - existingItem.price;
+				}
+			}
 		},
 	},
 });

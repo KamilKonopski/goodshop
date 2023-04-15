@@ -12,10 +12,15 @@ const FavouriteProducts: React.FC = () => {
 	);
 
 	return (
-		<ul>
+		<ul className={classes.favourite}>
 			{favProducts.map((fav) => (
-				<li key={fav.id}>
-					<Link to={`/product/${fav.id}`}>{fav.title}</Link>
+				<li className={classes["favourite__item"]} key={fav.id}>
+					<Link
+						className={classes["favourite__link"]}
+						to={`/product/${fav.id}`}
+					>
+						{fav.title}
+					</Link>
 				</li>
 			))}
 		</ul>

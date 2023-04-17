@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Products from "../components/Products/Products";
+import ProductFilters from "../components/ProductFilters/ProductFilters";
+import LoadingSpinner from "../components/UI/LoadingSpinner/LoadingSpinner";
 
 import { IProducts } from "src/interfaces/products";
-import ContentFilters from "../components/ContentFilters/ContentFilters";
 
 import useDocumentTitle from "../hooks/useDocumentTitle";
-import LoadingSpinner from "../components/UI/LoadingSpinner/LoadingSpinner";
 
 const ProductCategoryPage: React.FC = () => {
 	const [products, setProducts] = useState<IProducts[] | []>([]);
@@ -37,7 +37,7 @@ const ProductCategoryPage: React.FC = () => {
 
 	return (
 		<main className="main">
-			<ContentFilters />
+			<ProductFilters />
 			{isLoading && <LoadingSpinner />}
 			{!isLoading && <Products products={products} />}
 		</main>

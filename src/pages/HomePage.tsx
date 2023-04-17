@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import ContentFilters from "../components/ContentFilters/ContentFilters";
+import ProductFilters from "../components/ProductFilters/ProductFilters";
 import Products from "../components/Products/Products";
 
 import { IProducts } from "src/interfaces/products";
@@ -55,7 +55,7 @@ const HomePage: React.FC = () => {
 
 	return (
 		<main className="main">
-			<ContentFilters />
+			<ProductFilters />
 			{isLoading && <LoadingSpinner />}
 			{!isLoading && (
 				<Products products={products} hasMore={hasMore} ref={elementRef} />

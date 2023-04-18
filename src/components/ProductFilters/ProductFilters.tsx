@@ -10,22 +10,25 @@ const ProductFilters: React.FC = () => {
 
 	return (
 		<aside className={classes.filters}>
-			<h2>Filter</h2>
-			<div>
-				<button onClick={() => setShowFavourite((prev) => !prev)}>
-					<span>Favourite Searches</span>
-					<RiArrowDropDownLine
-						style={
-							showFavourite
-								? { transform: "rotate(0)", transition: "all 0.2s linear" }
-								: { transform: "rotate(-90deg)", transition: "all 0.2s linear" }
-						}
-						size={20}
-						color="#a5a8ad"
-					/>
-				</button>
-				{showFavourite && <FilterFavourite />}
-			</div>
+			<h2 className={classes["filters__heading"]}>Filter</h2>
+			<button
+				className={classes["filters__favourite-btn"]}
+				onClick={() => setShowFavourite((prev) => !prev)}
+			>
+				<span className={classes["filters__favourite-text"]}>
+					Favourite Searches
+				</span>
+				<RiArrowDropDownLine
+					style={
+						showFavourite
+							? { transform: "rotate(0)", transition: "all 0.2s linear" }
+							: { transform: "rotate(-90deg)", transition: "all 0.2s linear" }
+					}
+					size={30}
+					color="#a5a8ad"
+				/>
+			</button>
+			{showFavourite && <FilterFavourite />}
 		</aside>
 	);
 };

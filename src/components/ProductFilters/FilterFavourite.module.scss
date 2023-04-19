@@ -1,0 +1,13 @@
+.favourite {
+	list-style: none;
+
+	&__link {
+		color: var(--color-text-lighten);
+		text-decoration: none;
+		transition: all 0.2s linear;
+
+		&:hover {
+			text-decoration: underline var(--color-secondary);
+		}
+	}
+}

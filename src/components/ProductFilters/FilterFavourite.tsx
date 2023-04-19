@@ -14,12 +14,12 @@ const FilterFavourite: React.FC = () => {
 	return (
 		<ul className={classes.favourite}>
 			{favProducts.map((fav) => (
-				<li className={classes["favourite__item"]} key={fav.id}>
+				<li key={fav.id}>
 					<Link
 						className={classes["favourite__link"]}
 						to={`/product/${fav.id}`}
 					>
-						{fav.title}
+						- {fav.title}
 					</Link>
 				</li>
 			))}

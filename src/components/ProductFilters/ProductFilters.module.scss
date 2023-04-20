@@ -1,10 +1,35 @@
 .filters {
 	flex-basis: 360px;
 	background-color: var(--color-nav);
-	padding: 0 15px;
+	padding: 10px 25px;
+
+	&__head {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__heading {
+		font-size: 15px;
+		text-transform: uppercase;
+		color: var(--color-content);
+	}
+
+	&__collapse-btn {
+		background-color: transparent;
+		border: none;
+		color: var(--color-secondary);
+		font-size: 14px;
+		font-weight: 700;
+		cursor: pointer;
+		transition: color 0.2s linear;
+
+		&:hover {
+			color: darken($color: #119ddb, $amount: 10);
+		}
+	}
 
 	&__favourite-btn {
-		width: 90%;
+		width: 100%;
 		display: flex;
 		align-items: center;
 		margin: 10px auto;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 import Products from "../components/Products/Products";
 import ProductFilters from "../components/ProductFilters/ProductFilters";
@@ -8,6 +9,10 @@ import LoadingSpinner from "../components/UI/LoadingSpinner/LoadingSpinner";
 import { IProducts } from "src/interfaces/products";
 
 import useDocumentTitle from "../hooks/useDocumentTitle";
+
+type ProductResponse = {
+	products: IProducts[];
+};
 
 const ProductCategoryPage: React.FC = () => {
 	const [products, setProducts] = useState<IProducts[] | []>([]);
@@ -19,11 +24,11 @@ const ProductCategoryPage: React.FC = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			setIsLoading(true);
-			const response = await fetch(
+			const { data } = await axios.get<ProductResponse>(
 				`https://dummyjson.com/products/category/${category}`
 			);
 			try {
-				const { products }: { products: IProducts[] } = await response.json();
+				const { products } = data;
 				setProducts(products);
 			} catch (err) {
 				//

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import axios from "axios";
 
 import ProductFilters from "../components/ProductFilters/ProductFilters";
 import Products from "../components/Products/Products";
@@ -7,6 +8,10 @@ import { IProducts } from "src/interfaces/products";
 
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import LoadingSpinner from "../components/UI/LoadingSpinner/LoadingSpinner";
+
+type ProductResponse = {
+	products: IProducts[];
+};
 
 const HomePage: React.FC = () => {
 	const [products, setProducts] = useState<IProducts[] | []>([]);
@@ -26,10 +31,10 @@ const HomePage: React.FC = () => {
 
 	const fetchMoreProducts = async () => {
 		setIsLoading(true);
-		const response = await fetch(
+		const { data } = await axios.get<ProductResponse>(
 			`https://dummyjson.com/products?limit=16&skip=${page * 16}`
 		);
-		const { products }: { products: IProducts[] } = await response.json();
+		const { products } = data;
 
 		if (products.length === 0) {
 			setHasMore(false);

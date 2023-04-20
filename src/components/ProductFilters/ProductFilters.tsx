@@ -10,7 +10,12 @@ const ProductFilters: React.FC = () => {
 
 	return (
 		<aside className={classes.filters}>
-			<h2 className={classes["filters__heading"]}>Filter</h2>
+			<div className={classes["filters__head"]}>
+				<h2 className={classes["filters__heading"]}>Filter</h2>
+				<button className={classes["filters__collapse-btn"]}>
+					Collapse all
+				</button>
+			</div>
 			<button
 				className={classes["filters__favourite-btn"]}
 				onClick={() => setShowFavourite((prev) => !prev)}

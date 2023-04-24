@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 import { authActions } from "../store/auth-slice";
 
@@ -15,15 +16,12 @@ const LoginPage: React.FC = () => {
 	const dispatch = useDispatch();
 
 	const handleLogin = (username: string, password: string) => {
-		fetch("https://dummyjson.com/auth/login", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
+		axios
+			.post("https://dummyjson.com/auth/login", {
 				username,
 				password,
-			}),
-		})
-			.then((res) => res.json())
+			})
+			.then((res) => res.data)
 			.then((data: IUser) => dispatch(authActions.loginHandler(data)));
 	};
 

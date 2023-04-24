@@ -26,7 +26,7 @@ const Login = ({
 			return;
 		}
 
-		if (values.username !== "kminchelle" && values.password === "0lelplR") {
+		if (values.username !== "kminchelle" && values.password !== "0lelplR") {
 			setError("Login failed. Check username and password and try again!");
 			return;
 		}

@@ -48,7 +48,7 @@ const Login = ({
 			<form className={classes["login__form"]} onSubmit={handleSubmitForm}>
 				<div className={classes["login__item"]}>
 					<label className={classes["login__label"]} htmlFor="username">
-						<AiOutlineUser size={55} />
+						<AiOutlineUser size={40} />
 					</label>
 					<input
 						className={classes["login__input"]}
@@ -62,7 +62,7 @@ const Login = ({
 				</div>
 				<div className={classes["login__item"]}>
 					<label className={classes["login__label"]} htmlFor="password">
-						<GiPadlockOpen size={55} />
+						<GiPadlockOpen size={40} />
 					</label>
 					<input
 						className={classes["login__input"]}

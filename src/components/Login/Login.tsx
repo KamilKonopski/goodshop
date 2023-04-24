@@ -1,5 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineUser } from "react-icons/ai";
+import { GiPadlockOpen } from "react-icons/gi";
 
 import classes from "./Login.module.scss";
 
@@ -42,9 +44,10 @@ const Login = ({
 
 	return (
 		<form className={classes.login} onSubmit={handleSubmitForm}>
+			<h2 className={classes["login__heading"]}>user login</h2>
 			<div className={classes["login__item"]}>
 				<label className={classes["login__label"]} htmlFor="username">
-					Username
+					<AiOutlineUser />
 				</label>
 				<input
 					className={classes["login__input"]}
@@ -58,7 +61,7 @@ const Login = ({
 			</div>
 			<div className={classes["login__item"]}>
 				<label className={classes["login__label"]} htmlFor="password">
-					Password
+					<GiPadlockOpen />
 				</label>
 				<input
 					className={classes["login__input"]}

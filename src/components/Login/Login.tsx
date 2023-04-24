@@ -43,39 +43,41 @@ const Login = ({
 	};
 
 	return (
-		<form className={classes.login} onSubmit={handleSubmitForm}>
+		<section className={classes.login}>
 			<h2 className={classes["login__heading"]}>user login</h2>
-			<div className={classes["login__item"]}>
-				<label className={classes["login__label"]} htmlFor="username">
-					<AiOutlineUser />
-				</label>
-				<input
-					className={classes["login__input"]}
-					type="text"
-					id="username"
-					name="username"
-					placeholder="Enter your username"
-					value={values.username}
-					onChange={handleChangeValues}
-				/>
-			</div>
-			<div className={classes["login__item"]}>
-				<label className={classes["login__label"]} htmlFor="password">
-					<GiPadlockOpen />
-				</label>
-				<input
-					className={classes["login__input"]}
-					type="password"
-					id="password"
-					name="password"
-					placeholder="Enter your password"
-					value={values.password}
-					onChange={handleChangeValues}
-				/>
-			</div>
-			{error && <span className={classes["login__error"]}>{error}</span>}
-			<button className={classes["login__button"]}>Login</button>
-		</form>
+			<form className={classes["login__form"]} onSubmit={handleSubmitForm}>
+				<div className={classes["login__item"]}>
+					<label className={classes["login__label"]} htmlFor="username">
+						<AiOutlineUser size={55} />
+					</label>
+					<input
+						className={classes["login__input"]}
+						type="text"
+						id="username"
+						name="username"
+						placeholder="Enter your username"
+						value={values.username}
+						onChange={handleChangeValues}
+					/>
+				</div>
+				<div className={classes["login__item"]}>
+					<label className={classes["login__label"]} htmlFor="password">
+						<GiPadlockOpen size={55} />
+					</label>
+					<input
+						className={classes["login__input"]}
+						type="password"
+						id="password"
+						name="password"
+						placeholder="Enter your password"
+						value={values.password}
+						onChange={handleChangeValues}
+					/>
+				</div>
+				{error && <span className={classes["login__error"]}>{error}</span>}
+				<button className={classes["login__button"]}>Login</button>
+			</form>
+		</section>
 	);
 };
 
